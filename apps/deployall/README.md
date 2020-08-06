@@ -3,5 +3,4 @@ These include:
 + Identity CA certificate
 + Permissions CA certificate
 + Signed domain governance file
-+ Signed certificate revocation list
-
++ Signed certificate revocation list (optional)
