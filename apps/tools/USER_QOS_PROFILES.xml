@@ -17,7 +17,7 @@
                     <verbosity>ERROR</verbosity>
                     <category>ALL</category>>
                     <print_format>VERBOSE</print_format>
-                    <output_file>tools_log.txt</output_file>
+                    <output_file>$(HOMEPATH)\documents\rti_workspace\dds_secure_workbook\tools_log.txt</output_file>
                 </logging>
             </participant_factory_qos>
 
@@ -87,7 +87,7 @@
                         <!-- TODO: Set the location for the security logging file -->
                         <element>
                             <name>com.rti.serv.secure.logging.log_file</name>
-                            <value>$(DDS_SECURE_DEMO_HOME)/apps/tools/deploy/tools_secure_log.txt</value>
+                            <value>$(HOMEPATH)\documents\rti_workspace\dds_secure_workbook\apps\tools\deploy\tools_secure_log.txt</value>
                         </element>
                         <!-- TODO: If you'd like to receive Security log messages at a remote location -->
                         <!-- TODO: set the property below to true.  The log messages will then be published -->
@@ -106,34 +106,34 @@
                         <!-- The Idenity CA's identity certificate -->
                         <element>
                             <name>com.rti.serv.secure.authentication.ca_file</name>
-                            <value>$(DDS_SECURE_DEMO_HOME)/apps/deployall/cacert.pem</value>
+                            <value>$(HOMEPATH)\documents\rti_workspace\dds_secure_workbook\apps\deployall\cacert.pem</value>
                         </element>
                         <!-- The Permission CA's identity certificate -->
                         <element>
                             <name>com.rti.serv.secure.access_control.permissions_authority_file</name>
-                            <value>$(DDS_SECURE_DEMO_HOME)/apps/deployall/permissionscacert.pem</value>
+                            <value>$(HOMEPATH)\documents\rti_workspace\dds_secure_workbook\apps\deployall\permissionscacert.pem</value>
                         </element>
                         <!-- Common Domain Governance file, signed by Permissions CA -->
                         <element>
                             <name>com.rti.serv.secure.access_control.governance_file</name>
-                            <value>$(DDS_SECURE_DEMO_HOME)/apps/deployall/demo_governance_signed.p7s</value>
+                            <value>$(HOMEPATH)\documents\rti_workspace\dds_secure_workbook\apps\deployall\demo_governance_signed.p7s</value>
                         </element>
                         <!-- TODO: Add entry for CRL -->
 
                         <!-- This applications's identity certificate -->
                         <element>
                             <name>com.rti.serv.secure.authentication.certificate_file</name>
-                            <value>$(DDS_SECURE_DEMO_HOME)/apps/tools/deploy/tools.pem</value>
+                            <value>$(HOMEPATH)\documents\rti_workspace\dds_secure_workbook\apps\tools\deploy\tools.pem</value>
                         </element>
                         <!-- This app's private key (KEEP PRIVATE!)-->
                         <element>
                             <name>com.rti.serv.secure.authentication.private_key_file</name>
-                            <value>$(DDS_SECURE_DEMO_HOME)/apps/tools/deploy/private/toolskey.pem</value>
+                            <value>$(HOMEPATH)\documents\rti_workspace\dds_secure_workbook\apps\tools\deploy\private\toolskey.pem</value>
                         </element>
                         <!-- Permissions file for this application, signed by Permissions CA -->
                         <element>
                             <name>com.rti.serv.secure.access_control.permissions_file</name>
-                            <value>$(DDS_SECURE_DEMO_HOME)/apps/tools/deploy/tools_permissions_signed.p7s</value>
+                            <value>$(HOMEPATH)\documents\rti_workspace\dds_secure_workbook\apps\tools\deploy\tools_permissions_signed.p7s</value>
                         </element>
                     </value>
                 </property>
