@@ -1,320 +1,317 @@
 MIME-Version: 1.0
-Content-Type: multipart/signed; protocol="application/x-pkcs7-signature"; micalg="sha-256"; boundary="----B6A4203C06F9D8D9394D468D49DF936D"
+Content-Type: multipart/signed; protocol="application/x-pkcs7-signature"; micalg="sha-256"; boundary="----D55C624E8685544D149216231BCBC9BC"
 
 This is an S/MIME signed message
 
-------B6A4203C06F9D8D9394D468D49DF936D
-Content-Type: text/plain
+------D55C624E8685544D149216231BCBC9BC
+Content-Type: text/plain
+
+<?xml version="1.0" encoding="UTF-8"?>
+<dds xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="/Applications/rti_connext_dds-5.3.1/resource/schema/dds_security_governance.xsd">
+    <domain_access_rules>
+
+        <domain_rule>
+            <domains>
+                <id>0</id> <!-- Security Disabled -->
+            </domains> <!-- secure libs can be used, while security is disabled -->
+            <allow_unauthenticated_participants>true</allow_unauthenticated_participants>
+            
+            <enable_join_access_control>false</enable_join_access_control>
+            <discovery_protection_kind>NONE</discovery_protection_kind>
+            <liveliness_protection_kind>NONE</liveliness_protection_kind>
+            <rtps_protection_kind>NONE</rtps_protection_kind>
+            <topic_access_rules>
+                <topic_rule>
+                    <topic_expression>*</topic_expression>
+                    <enable_discovery_protection>false</enable_discovery_protection>
+                    <enable_read_access_control>false</enable_read_access_control>
+                    <enable_write_access_control>false</enable_write_access_control>
+                    <metadata_protection_kind>NONE</metadata_protection_kind>
+                    <data_protection_kind>NONE</data_protection_kind>
+                </topic_rule>
+            </topic_access_rules>
+        </domain_rule>
+
+        <domain_rule>
+            <domains>
+                <id>1</id>
+            </domains>
+            <!-- In this domain, we allow both authenticated (Secure) and non-authenticated (non-Secure) participants.  
+                 Squares can flow from non-Secure apps to Secure apps, but not the other way.
+                 Circles flow from Secure apps to non-Secure apps, but not the other way.  
+                 Triangles are shared only from non-Secure to non-Secure apps, and from Secure apps to other Secure apps, but not in-between. -->
+            <allow_unauthenticated_participants>true</allow_unauthenticated_participants>
+            <enable_join_access_control>false</enable_join_access_control>
+            <discovery_protection_kind>NONE</discovery_protection_kind>
+            <liveliness_protection_kind>NONE</liveliness_protection_kind>
+            <rtps_protection_kind>NONE</rtps_protection_kind>
+            <topic_access_rules>
+                <topic_rule>
+                    <topic_expression>Square</topic_expression>
+                    <enable_discovery_protection>false</enable_discovery_protection>
+                    <enable_read_access_control>true</enable_read_access_control> <!-- NEW: check apps perms file for read access permission -->
+                    <enable_write_access_control>false</enable_write_access_control>
+                    <metadata_protection_kind>NONE</metadata_protection_kind>
+                    <data_protection_kind>NONE</data_protection_kind>
+                </topic_rule>
+                <topic_rule>
+                    <topic_expression>Circle</topic_expression>
+                    <enable_discovery_protection>false</enable_discovery_protection>
+                    <enable_read_access_control>false</enable_read_access_control>
+                    <enable_write_access_control>true</enable_write_access_control> <!-- NEW: check apps perms file for write access permission -->
+                    <metadata_protection_kind>NONE</metadata_protection_kind>
+                    <data_protection_kind>NONE</data_protection_kind>
+                </topic_rule>
+                <topic_rule>
+                    <topic_expression>Triangle</topic_expression>
+                    <enable_discovery_protection>false</enable_discovery_protection>
+                    <enable_read_access_control>true</enable_read_access_control>   <!-- NEW: check apps perms file for read access permission -->
+                    <enable_write_access_control>true</enable_write_access_control> <!-- NEW: check apps perms file for write access permission -->
+                    <metadata_protection_kind>NONE</metadata_protection_kind>
+                    <data_protection_kind>NONE</data_protection_kind>
+                </topic_rule>
+                <topic_rule>
+                    <topic_expression>*</topic_expression>
+                    <enable_discovery_protection>false</enable_discovery_protection>
+                    <enable_read_access_control>false</enable_read_access_control>
+                    <enable_write_access_control>false</enable_write_access_control>
+                    <metadata_protection_kind>NONE</metadata_protection_kind>
+                    <data_protection_kind>NONE</data_protection_kind>
+                </topic_rule>
+            </topic_access_rules>
+        </domain_rule>
+
+        <domain_rule>
+            <domains>
+                <id>2</id>
+            </domains>
+            <!-- In this domain, we no longer allow unauthenticated (non-Secure) apps to share data with Secure applications.  -->
+            <allow_unauthenticated_participants>false</allow_unauthenticated_participants> <!-- NEW: do not allow unauthenticated participants to match with secure applications -->
+            <enable_join_access_control>true</enable_join_access_control> <!-- NEW: remotely check all participants permissions files -->
+            <discovery_protection_kind>NONE</discovery_protection_kind>
+            <liveliness_protection_kind>NONE</liveliness_protection_kind>
+            <rtps_protection_kind>NONE</rtps_protection_kind>
+            <topic_access_rules>
+                <topic_rule>
+                    <topic_expression>Square</topic_expression>
+                    <enable_discovery_protection>false</enable_discovery_protection>
+                    <enable_read_access_control>true</enable_read_access_control>
+                    <enable_write_access_control>false</enable_write_access_control>
+                    <metadata_protection_kind>NONE</metadata_protection_kind>
+                    <data_protection_kind>NONE</data_protection_kind>
+                </topic_rule>
+                <topic_rule>
+                    <topic_expression>Circle</topic_expression>
+                    <enable_discovery_protection>false</enable_discovery_protection>
+                    <enable_read_access_control>false</enable_read_access_control>
+                    <enable_write_access_control>true</enable_write_access_control>
+                    <metadata_protection_kind>NONE</metadata_protection_kind>
+                    <data_protection_kind>NONE</data_protection_kind>
+                </topic_rule>
+                <topic_rule>
+                    <topic_expression>Triangle</topic_expression>
+                    <enable_discovery_protection>false</enable_discovery_protection>
+                    <enable_read_access_control>true</enable_read_access_control>
+                    <enable_write_access_control>true</enable_write_access_control>
+                    <metadata_protection_kind>NONE</metadata_protection_kind>
+                    <data_protection_kind>NONE</data_protection_kind>
+                </topic_rule>
+                <topic_rule>
+                    <topic_expression>*</topic_expression>
+                    <enable_discovery_protection>false</enable_discovery_protection>
+                    <enable_read_access_control>false</enable_read_access_control>
+                    <enable_write_access_control>false</enable_write_access_control>
+                    <metadata_protection_kind>NONE</metadata_protection_kind>
+                    <data_protection_kind>NONE</data_protection_kind>
+                </topic_rule>
+            </topic_access_rules>
+        </domain_rule>
+
+        <domain_rule>
+            <domains> <!-- RTPS authentication is enabled, no encryption yet -->
+                <id>3</id> <!-- Secure topics now have SRTPS headers and footers -->
+            </domains>
+            <allow_unauthenticated_participants>false</allow_unauthenticated_participants>
+            <enable_join_access_control>true</enable_join_access_control>
+            <discovery_protection_kind>NONE</discovery_protection_kind>
+            <liveliness_protection_kind>NONE</liveliness_protection_kind>
+            <rtps_protection_kind>SIGN</rtps_protection_kind> <!-- NEW: RTPS is authenticated, only NONE and SIGN supported in 5.3.1 -->
+            <topic_access_rules>
+                <topic_rule>
+                    <topic_expression>Square</topic_expression>
+                    <enable_discovery_protection>false</enable_discovery_protection>
+                    <enable_read_access_control>true</enable_read_access_control>
+                    <enable_write_access_control>false</enable_write_access_control>
+                    <metadata_protection_kind>NONE</metadata_protection_kind>
+                    <data_protection_kind>NONE</data_protection_kind>
+                </topic_rule>
+                <topic_rule>
+                    <topic_expression>Circle</topic_expression>
+                    <enable_discovery_protection>false</enable_discovery_protection>
+                    <enable_read_access_control>false</enable_read_access_control>
+                    <enable_write_access_control>true</enable_write_access_control>
+                    <metadata_protection_kind>NONE</metadata_protection_kind>
+                    <data_protection_kind>NONE</data_protection_kind>
+                </topic_rule>
+                <topic_rule>
+                    <topic_expression>Triangle</topic_expression>
+                    <enable_discovery_protection>false</enable_discovery_protection>
+                    <enable_read_access_control>true</enable_read_access_control>
+                    <enable_write_access_control>true</enable_write_access_control>
+                    <metadata_protection_kind>NONE</metadata_protection_kind>
+                    <data_protection_kind>NONE</data_protection_kind>
+                </topic_rule>
+                <topic_rule>
+                    <topic_expression>*</topic_expression>
+                    <enable_discovery_protection>false</enable_discovery_protection>
+                    <enable_read_access_control>false</enable_read_access_control>
+                    <enable_write_access_control>false</enable_write_access_control>
+                    <metadata_protection_kind>NONE</metadata_protection_kind>
+                    <data_protection_kind>NONE</data_protection_kind>
+                </topic_rule>
+            </topic_access_rules>
+        </domain_rule>
+
+        <domain_rule> <!-- Topic-based encryption added to Triangles -->
+            <domains> <!-- SerializedData is now larger and encrypted, the Triangle data will look random and change drastically between samples -->
+                <id>4</id> <!-- All secure traffic remains authenticated at the RTPS level and includes authentication tag -->
+            </domains>
+            <allow_unauthenticated_participants>false</allow_unauthenticated_participants>
+            <enable_join_access_control>true</enable_join_access_control>
+            <discovery_protection_kind>NONE</discovery_protection_kind>
+            <liveliness_protection_kind>NONE</liveliness_protection_kind>
+            <rtps_protection_kind>SIGN</rtps_protection_kind>
+            <topic_access_rules>
+                <topic_rule>
+                    <topic_expression>Square</topic_expression>
+                    <enable_discovery_protection>false</enable_discovery_protection>
+                    <enable_read_access_control>true</enable_read_access_control>
+                    <enable_write_access_control>false</enable_write_access_control>
+                    <metadata_protection_kind>NONE</metadata_protection_kind>
+                    <data_protection_kind>NONE</data_protection_kind>
+                </topic_rule>
+                <topic_rule>
+                    <topic_expression>Circle</topic_expression>
+                    <enable_discovery_protection>false</enable_discovery_protection>
+                    <enable_read_access_control>false</enable_read_access_control>
+                    <enable_write_access_control>true</enable_write_access_control>
+                    <metadata_protection_kind>NONE</metadata_protection_kind>
+                    <data_protection_kind>NONE</data_protection_kind>
+                </topic_rule>
+                <topic_rule>
+                    <topic_expression>Triangle</topic_expression>
+                    <enable_discovery_protection>false</enable_discovery_protection>
+                    <enable_read_access_control>true</enable_read_access_control>
+                    <enable_write_access_control>true</enable_write_access_control>
+                    <metadata_protection_kind>NONE</metadata_protection_kind>
+                    <data_protection_kind>ENCRYPT</data_protection_kind> <!-- NEW: Encrypt just the payload for Triangles -->
+                </topic_rule>
+                <topic_rule>
+                    <topic_expression>*</topic_expression>
+                    <enable_discovery_protection>false</enable_discovery_protection>
+                    <enable_read_access_control>false</enable_read_access_control>
+                    <enable_write_access_control>false</enable_write_access_control>
+                    <metadata_protection_kind>NONE</metadata_protection_kind>
+                    <data_protection_kind>NONE</data_protection_kind>
+                </topic_rule>
+            </topic_access_rules>
+        </domain_rule>  
+
+        <domain_rule> <!-- Triangle topic metadata is now encrypted -->
+            <domains> <!-- "Triangle" topic name is not detected in wireshark anymore, packets contain SEC_PREFIX SEC_BODY and SEC_POSTFIX -->
+                <id>5</id> <!-- There is no more "DATA" submessage, all metadata is encrypted -->
+            </domains>
+            <allow_unauthenticated_participants>false</allow_unauthenticated_participants>
+            <enable_join_access_control>true</enable_join_access_control>
+            <discovery_protection_kind>NONE</discovery_protection_kind>
+            <liveliness_protection_kind>NONE</liveliness_protection_kind>
+            <rtps_protection_kind>SIGN</rtps_protection_kind>
+            <topic_access_rules>
+                <topic_rule>
+                    <topic_expression>Square</topic_expression>
+                    <enable_discovery_protection>false</enable_discovery_protection>
+                    <enable_read_access_control>true</enable_read_access_control>
+                    <enable_write_access_control>false</enable_write_access_control>
+                    <metadata_protection_kind>NONE</metadata_protection_kind>
+                    <data_protection_kind>NONE</data_protection_kind>
+                </topic_rule>
+                <topic_rule>
+                    <topic_expression>Circle</topic_expression>
+                    <enable_discovery_protection>false</enable_discovery_protection>
+                    <enable_read_access_control>false</enable_read_access_control>
+                    <enable_write_access_control>true</enable_write_access_control>
+                    <metadata_protection_kind>NONE</metadata_protection_kind>
+                    <data_protection_kind>NONE</data_protection_kind>
+                </topic_rule>
+                <topic_rule>
+                    <topic_expression>Triangle</topic_expression>
+                    <enable_discovery_protection>false</enable_discovery_protection>
+                    <enable_read_access_control>true</enable_read_access_control>
+                    <enable_write_access_control>true</enable_write_access_control>
+                    <metadata_protection_kind>ENCRYPT</metadata_protection_kind> <!-- NEW: Encrypt metadata for Triangles in addition to payload -->
+                    <data_protection_kind>ENCRYPT</data_protection_kind>
+                </topic_rule>
+                <topic_rule>
+                    <topic_expression>*</topic_expression>
+                    <enable_discovery_protection>false</enable_discovery_protection>
+                    <enable_read_access_control>false</enable_read_access_control>
+                    <enable_write_access_control>false</enable_write_access_control>
+                    <metadata_protection_kind>NONE</metadata_protection_kind>
+                    <data_protection_kind>NONE</data_protection_kind>
+                </topic_rule>
+            </topic_access_rules>
+        </domain_rule>
+
+        <domain_rule> <!-- Encryption enabled at the RTPS layer now -->
+            <domains> <!-- Even though Circle/Triangle/Square topics aren't individually encrypted, they are wrapped in RTPS encryption -->
+                <id>6</id>
+            </domains>
+            <allow_unauthenticated_participants>false</allow_unauthenticated_participants>
+            <enable_join_access_control>true</enable_join_access_control>
+            <discovery_protection_kind>ENCRYPT</discovery_protection_kind> <!-- NEW: Encrypt discovery messages -->
+            <liveliness_protection_kind>NONE</liveliness_protection_kind>
+            <rtps_protection_kind>ENCRYPT</rtps_protection_kind> <!-- NEW: Encrypt entire RTPS message -->
+            <topic_access_rules>
+                <topic_rule>
+                    <topic_expression>Square</topic_expression>
+                    <enable_discovery_protection>false</enable_discovery_protection>
+                    <enable_read_access_control>true</enable_read_access_control>
+                    <enable_write_access_control>false</enable_write_access_control>
+                    <metadata_protection_kind>NONE</metadata_protection_kind>
+                    <data_protection_kind>NONE</data_protection_kind>
+                </topic_rule>
+                <topic_rule>
+                    <topic_expression>Circle</topic_expression>
+                    <enable_discovery_protection>false</enable_discovery_protection>
+                    <enable_read_access_control>false</enable_read_access_control>
+                    <enable_write_access_control>true</enable_write_access_control>
+                    <metadata_protection_kind>NONE</metadata_protection_kind>
+                    <data_protection_kind>NONE</data_protection_kind>
+                </topic_rule>
+                <topic_rule>
+                    <topic_expression>Triangle</topic_expression>
+                    <enable_discovery_protection>false</enable_discovery_protection>
+                    <enable_read_access_control>true</enable_read_access_control>
+                    <enable_write_access_control>true</enable_write_access_control>
+                    <metadata_protection_kind>NONE</metadata_protection_kind> <!-- Since RTPS message is encrypted, no need to encrypt here -->
+                    <data_protection_kind>NONE</data_protection_kind> <!-- Since RTPS message is encrypted, no need to encrypt here -->
+                </topic_rule>
+                <topic_rule>
+                    <topic_expression>*</topic_expression>
+                    <enable_discovery_protection>false</enable_discovery_protection>
+                    <enable_read_access_control>false</enable_read_access_control>
+                    <enable_write_access_control>false</enable_write_access_control>
+                    <metadata_protection_kind>NONE</metadata_protection_kind>
+                    <data_protection_kind>NONE</data_protection_kind>
+                </topic_rule>
+            </topic_access_rules>
+        </domain_rule>
+
+    </domain_access_rules>
+</dds>
 
-<?xml version="1.0" encoding="UTF-8"?>
-<dds xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="/Applications/rti_connext_dds-5.3.1/resource/schema/dds_security_governance.xsd">
-    <domain_access_rules>
-
-        <domain_rule>
-            <domains>
-                <id>0</id> <!-- Security Disabled -->
-            </domains> <!-- secure libs can be used, while security is disabled -->
-            <allow_unauthenticated_participants>true</allow_unauthenticated_participants>
-            
-            <enable_join_access_control>false</enable_join_access_control>
-            <discovery_protection_kind>NONE</discovery_protection_kind>
-            <liveliness_protection_kind>NONE</liveliness_protection_kind>
-            <rtps_protection_kind>NONE</rtps_protection_kind>
-            <topic_access_rules>
-                <topic_rule>
-                    <topic_expression>*</topic_expression>
-                    <enable_discovery_protection>false</enable_discovery_protection>
-                    <enable_read_access_control>false</enable_read_access_control>
-                    <enable_write_access_control>false</enable_write_access_control>
-                    <metadata_protection_kind>NONE</metadata_protection_kind>
-                    <data_protection_kind>NONE</data_protection_kind>
-                </topic_rule>
-            </topic_access_rules>
-        </domain_rule>
-
-        <domain_rule>
-            <domains>
-                <id>1</id>
-            </domains>
-            <!-- In this domain, we allow both authenticated (Secure) and
-                 non-authenticated (non-Secure) participants.  
-                 Squares can flow from non-Secure apps to Secure apps, but not the other way.
-                 Circles flow from Secure apps to non-Secure apps, but not the other way.  
-                 Triangles are shared only from non-Secure to non-Secure apps, and from
-                 Secure apps to other Secure apps, but not in-between. -->
-            <allow_unauthenticated_participants>true</allow_unauthenticated_participants>
-            <enable_join_access_control>false</enable_join_access_control>
-            <discovery_protection_kind>NONE</discovery_protection_kind>
-            <liveliness_protection_kind>NONE</liveliness_protection_kind>
-            <rtps_protection_kind>NONE</rtps_protection_kind>
-            <topic_access_rules>
-                <topic_rule>
-                    <topic_expression>Square</topic_expression>
-                    <enable_discovery_protection>false</enable_discovery_protection>
-                    <enable_read_access_control>true</enable_read_access_control> <!-- NEW: check apps perms file for read access permission -->
-                    <enable_write_access_control>false</enable_write_access_control>
-                    <metadata_protection_kind>NONE</metadata_protection_kind>
-                    <data_protection_kind>NONE</data_protection_kind>
-                </topic_rule>
-                <topic_rule>
-                    <topic_expression>Circle</topic_expression>
-                    <enable_discovery_protection>false</enable_discovery_protection>
-                    <enable_read_access_control>false</enable_read_access_control>
-                    <enable_write_access_control>true</enable_write_access_control> <!-- NEW: check apps perms file for write access permission -->
-                    <metadata_protection_kind>NONE</metadata_protection_kind>
-                    <data_protection_kind>NONE</data_protection_kind>
-                </topic_rule>
-                <topic_rule>
-                    <topic_expression>Triangle</topic_expression>
-                    <enable_discovery_protection>false</enable_discovery_protection>
-                    <enable_read_access_control>true</enable_read_access_control>   <!-- NEW: check apps perms file for read access permission -->
-                    <enable_write_access_control>true</enable_write_access_control> <!-- NEW: check apps perms file for write access permission -->
-                    <metadata_protection_kind>NONE</metadata_protection_kind>
-                    <data_protection_kind>NONE</data_protection_kind>
-                </topic_rule>
-                <topic_rule>
-                    <topic_expression>*</topic_expression>
-                    <enable_discovery_protection>false</enable_discovery_protection>
-                    <enable_read_access_control>false</enable_read_access_control>
-                    <enable_write_access_control>false</enable_write_access_control>
-                    <metadata_protection_kind>NONE</metadata_protection_kind>
-                    <data_protection_kind>NONE</data_protection_kind>
-                </topic_rule>
-            </topic_access_rules>
-        </domain_rule>
-
-        <domain_rule>
-            <domains>
-                <id>2</id>
-            </domains>
-            <!-- In this domain, we no longer allow unauthenticated (non-Secure) apps to
-                 share data with Secure applications.  -->
-            <allow_unauthenticated_participants>false</allow_unauthenticated_participants> <!-- NEW: do not allow unauthenticated participants to match with secure applications -->
-            <enable_join_access_control>true</enable_join_access_control> <!-- NEW: remotely check all participants permissions files -->
-            <discovery_protection_kind>NONE</discovery_protection_kind>
-            <liveliness_protection_kind>NONE</liveliness_protection_kind>
-            <rtps_protection_kind>NONE</rtps_protection_kind>
-            <topic_access_rules>
-                <topic_rule>
-                    <topic_expression>Square</topic_expression>
-                    <enable_discovery_protection>false</enable_discovery_protection>
-                    <enable_read_access_control>true</enable_read_access_control>
-                    <enable_write_access_control>false</enable_write_access_control>
-                    <metadata_protection_kind>NONE</metadata_protection_kind>
-                    <data_protection_kind>NONE</data_protection_kind>
-                </topic_rule>
-                <topic_rule>
-                    <topic_expression>Circle</topic_expression>
-                    <enable_discovery_protection>false</enable_discovery_protection>
-                    <enable_read_access_control>false</enable_read_access_control>
-                    <enable_write_access_control>true</enable_write_access_control>
-                    <metadata_protection_kind>NONE</metadata_protection_kind>
-                    <data_protection_kind>NONE</data_protection_kind>
-                </topic_rule>
-                <topic_rule>
-                    <topic_expression>Triangle</topic_expression>
-                    <enable_discovery_protection>false</enable_discovery_protection>
-                    <enable_read_access_control>true</enable_read_access_control>
-                    <enable_write_access_control>true</enable_write_access_control>
-                    <metadata_protection_kind>NONE</metadata_protection_kind>
-                    <data_protection_kind>NONE</data_protection_kind>
-                </topic_rule>
-                <topic_rule>
-                    <topic_expression>*</topic_expression>
-                    <enable_discovery_protection>false</enable_discovery_protection>
-                    <enable_read_access_control>false</enable_read_access_control>
-                    <enable_write_access_control>false</enable_write_access_control>
-                    <metadata_protection_kind>NONE</metadata_protection_kind>
-                    <data_protection_kind>NONE</data_protection_kind>
-                </topic_rule>
-            </topic_access_rules>
-        </domain_rule>
-
-        <domain_rule>
-            <domains> <!-- RTPS authentication is enabled, no encryption yet -->
-                <id>3</id> <!-- Secure topics now have SRTPS headers and footers -->
-            </domains>
-            <allow_unauthenticated_participants>false</allow_unauthenticated_participants>
-            <enable_join_access_control>true</enable_join_access_control>
-            <discovery_protection_kind>NONE</discovery_protection_kind>
-            <liveliness_protection_kind>NONE</liveliness_protection_kind>
-            <rtps_protection_kind>SIGN</rtps_protection_kind> <!-- NEW: RTPS is authenticated, only NONE and SIGN supported in 5.3.1 -->
-            <topic_access_rules>
-                <topic_rule>
-                    <topic_expression>Square</topic_expression>
-                    <enable_discovery_protection>false</enable_discovery_protection>
-                    <enable_read_access_control>true</enable_read_access_control>
-                    <enable_write_access_control>false</enable_write_access_control>
-                    <metadata_protection_kind>NONE</metadata_protection_kind>
-                    <data_protection_kind>NONE</data_protection_kind>
-                </topic_rule>
-                <topic_rule>
-                    <topic_expression>Circle</topic_expression>
-                    <enable_discovery_protection>false</enable_discovery_protection>
-                    <enable_read_access_control>false</enable_read_access_control>
-                    <enable_write_access_control>true</enable_write_access_control>
-                    <metadata_protection_kind>NONE</metadata_protection_kind>
-                    <data_protection_kind>NONE</data_protection_kind>
-                </topic_rule>
-                <topic_rule>
-                    <topic_expression>Triangle</topic_expression>
-                    <enable_discovery_protection>false</enable_discovery_protection>
-                    <enable_read_access_control>true</enable_read_access_control>
-                    <enable_write_access_control>true</enable_write_access_control>
-                    <metadata_protection_kind>NONE</metadata_protection_kind>
-                    <data_protection_kind>NONE</data_protection_kind>
-                </topic_rule>
-                <topic_rule>
-                    <topic_expression>*</topic_expression>
-                    <enable_discovery_protection>false</enable_discovery_protection>
-                    <enable_read_access_control>false</enable_read_access_control>
-                    <enable_write_access_control>false</enable_write_access_control>
-                    <metadata_protection_kind>NONE</metadata_protection_kind>
-                    <data_protection_kind>NONE</data_protection_kind>
-                </topic_rule>
-            </topic_access_rules>
-        </domain_rule>
-
-        <domain_rule> <!-- Topic-based encryption added to Triangles -->
-            <domains> <!-- SerializedData is now larger and encrypted, the Triangle data will look random and change drastically between samples -->
-                <id>4</id> <!-- All secure traffic remains authenticated at the RTPS level and includes authentication tag -->
-            </domains>
-            <allow_unauthenticated_participants>false</allow_unauthenticated_participants>
-            <enable_join_access_control>true</enable_join_access_control>
-            <discovery_protection_kind>NONE</discovery_protection_kind>
-            <liveliness_protection_kind>NONE</liveliness_protection_kind>
-            <rtps_protection_kind>SIGN</rtps_protection_kind>
-            <topic_access_rules>
-                <topic_rule>
-                    <topic_expression>Square</topic_expression>
-                    <enable_discovery_protection>false</enable_discovery_protection>
-                    <enable_read_access_control>true</enable_read_access_control>
-                    <enable_write_access_control>false</enable_write_access_control>
-                    <metadata_protection_kind>NONE</metadata_protection_kind>
-                    <data_protection_kind>NONE</data_protection_kind>
-                </topic_rule>
-                <topic_rule>
-                    <topic_expression>Circle</topic_expression>
-                    <enable_discovery_protection>false</enable_discovery_protection>
-                    <enable_read_access_control>false</enable_read_access_control>
-                    <enable_write_access_control>true</enable_write_access_control>
-                    <metadata_protection_kind>NONE</metadata_protection_kind>
-                    <data_protection_kind>NONE</data_protection_kind>
-                </topic_rule>
-                <topic_rule>
-                    <topic_expression>Triangle</topic_expression>
-                    <enable_discovery_protection>false</enable_discovery_protection>
-                    <enable_read_access_control>true</enable_read_access_control>
-                    <enable_write_access_control>true</enable_write_access_control>
-                    <metadata_protection_kind>NONE</metadata_protection_kind>
-                    <data_protection_kind>ENCRYPT</data_protection_kind> <!-- NEW: Encrypt just the payload for Triangles -->
-                </topic_rule>
-                <topic_rule>
-                    <topic_expression>*</topic_expression>
-                    <enable_discovery_protection>false</enable_discovery_protection>
-                    <enable_read_access_control>false</enable_read_access_control>
-                    <enable_write_access_control>false</enable_write_access_control>
-                    <metadata_protection_kind>NONE</metadata_protection_kind>
-                    <data_protection_kind>NONE</data_protection_kind>
-                </topic_rule>
-            </topic_access_rules>
-        </domain_rule>  
-
-        <domain_rule> <!-- Triangle topic metadata is now encrypted -->
-            <domains> <!-- "Triangle" topic name is not detected in wireshark anymore, packets contain SEC_PREFIX SEC_BODY and SEC_POSTFIX -->
-                <id>5</id> <!-- There is no more "DATA" submessage, all metadata is encrypted -->
-            </domains>
-            <allow_unauthenticated_participants>false</allow_unauthenticated_participants>
-            <enable_join_access_control>true</enable_join_access_control>
-            <discovery_protection_kind>NONE</discovery_protection_kind>
-            <liveliness_protection_kind>NONE</liveliness_protection_kind>
-            <rtps_protection_kind>SIGN</rtps_protection_kind>
-            <topic_access_rules>
-                <topic_rule>
-                    <topic_expression>Square</topic_expression>
-                    <enable_discovery_protection>false</enable_discovery_protection>
-                    <enable_read_access_control>true</enable_read_access_control>
-                    <enable_write_access_control>false</enable_write_access_control>
-                    <metadata_protection_kind>NONE</metadata_protection_kind>
-                    <data_protection_kind>NONE</data_protection_kind>
-                </topic_rule>
-                <topic_rule>
-                    <topic_expression>Circle</topic_expression>
-                    <enable_discovery_protection>false</enable_discovery_protection>
-                    <enable_read_access_control>false</enable_read_access_control>
-                    <enable_write_access_control>true</enable_write_access_control>
-                    <metadata_protection_kind>NONE</metadata_protection_kind>
-                    <data_protection_kind>NONE</data_protection_kind>
-                </topic_rule>
-                <topic_rule>
-                    <topic_expression>Triangle</topic_expression>
-                    <enable_discovery_protection>false</enable_discovery_protection>
-                    <enable_read_access_control>true</enable_read_access_control>
-                    <enable_write_access_control>true</enable_write_access_control>
-                    <metadata_protection_kind>ENCRYPT</metadata_protection_kind> <!-- NEW: Encrypt metadata for Triangles in addition to payload -->
-                    <data_protection_kind>ENCRYPT</data_protection_kind>
-                </topic_rule>
-                <topic_rule>
-                    <topic_expression>*</topic_expression>
-                    <enable_discovery_protection>false</enable_discovery_protection>
-                    <enable_read_access_control>false</enable_read_access_control>
-                    <enable_write_access_control>false</enable_write_access_control>
-                    <metadata_protection_kind>NONE</metadata_protection_kind>
-                    <data_protection_kind>NONE</data_protection_kind>
-                </topic_rule>
-            </topic_access_rules>
-        </domain_rule>
-
-        <domain_rule> <!-- Encryption enabled at the RTPS layer now -->
-            <domains> <!-- Even though Circle/Triangle/Square topics aren't individually encrypted, they are wrapped in RTPS encryption -->
-                <id>6</id>
-            </domains>
-            <allow_unauthenticated_participants>false</allow_unauthenticated_participants>
-            <enable_join_access_control>true</enable_join_access_control>
-            <discovery_protection_kind>ENCRYPT</discovery_protection_kind> <!-- NEW: Encrypt discovery messages -->
-            <liveliness_protection_kind>NONE</liveliness_protection_kind>
-            <rtps_protection_kind>ENCRYPT</rtps_protection_kind> <!-- NEW: Encrypt entire RTPS message -->
-            <topic_access_rules>
-                <topic_rule>
-                    <topic_expression>Square</topic_expression>
-                    <enable_discovery_protection>false</enable_discovery_protection>
-                    <enable_read_access_control>true</enable_read_access_control>
-                    <enable_write_access_control>false</enable_write_access_control>
-                    <metadata_protection_kind>NONE</metadata_protection_kind>
-                    <data_protection_kind>NONE</data_protection_kind>
-                </topic_rule>
-                <topic_rule>
-                    <topic_expression>Circle</topic_expression>
-                    <enable_discovery_protection>false</enable_discovery_protection>
-                    <enable_read_access_control>false</enable_read_access_control>
-                    <enable_write_access_control>true</enable_write_access_control>
-                    <metadata_protection_kind>NONE</metadata_protection_kind>
-                    <data_protection_kind>NONE</data_protection_kind>
-                </topic_rule>
-                <topic_rule>
-                    <topic_expression>Triangle</topic_expression>
-                    <enable_discovery_protection>false</enable_discovery_protection>
-                    <enable_read_access_control>true</enable_read_access_control>
-                    <enable_write_access_control>true</enable_write_access_control>
-                    <metadata_protection_kind>NONE</metadata_protection_kind> <!-- Since RTPS message is encrypted, no need to encrypt here -->
-                    <data_protection_kind>NONE</data_protection_kind> <!-- Since RTPS message is encrypted, no need to encrypt here -->
-                </topic_rule>
-                <topic_rule>
-                    <topic_expression>*</topic_expression>
-                    <enable_discovery_protection>false</enable_discovery_protection>
-                    <enable_read_access_control>false</enable_read_access_control>
-                    <enable_write_access_control>false</enable_write_access_control>
-                    <metadata_protection_kind>NONE</metadata_protection_kind>
-                    <data_protection_kind>NONE</data_protection_kind>
-                </topic_rule>
-            </topic_access_rules>
-        </domain_rule>
-
-    </domain_access_rules>
-</dds>
-
-------B6A4203C06F9D8D9394D468D49DF936D
+------D55C624E8685544D149216231BCBC9BC
 Content-Type: application/x-pkcs7-signature; name="smime.p7s"
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment; filename="smime.p7s"
@@ -336,12 +333,12 @@ CzAJBgNVBAgMAkNBMRIwEAYDVQQHDAlTdW5ueXZhbGUxHjAcBgNVBAoMFVJlYWwg
 VGltZSBJbm5vdmF0aW9uczEXMBUGA1UEAwwOUlRJIENlcnQgV29ybGQxIjAgBgkq
 hkiG9w0BCQEWE3Blcm1pc3Npb25zQHJ0aS5jb20CFBBWYYm0p27La35Z5OL0H02x
 TFL9MA0GCWCGSAFlAwQCAQUAoIHkMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEw
-HAYJKoZIhvcNAQkFMQ8XDTIwMDcyMjIwMDUyMFowLwYJKoZIhvcNAQkEMSIEIDYc
-m6M8e45BCiCB+NQgdZZkn4HXEJQ4usTGvniJrI6FMHkGCSqGSIb3DQEJDzFsMGow
+HAYJKoZIhvcNAQkFMQ8XDTIwMDgyODIyMTIyMlowLwYJKoZIhvcNAQkEMSIEIMDK
+HpahXTHwMEyXWQvgkAlylbwPhPd9n/muY98kWCx5MHkGCSqGSIb3DQEJDzFsMGow
 CwYJYIZIAWUDBAEqMAsGCWCGSAFlAwQBFjALBglghkgBZQMEAQIwCgYIKoZIhvcN
 AwcwDgYIKoZIhvcNAwICAgCAMA0GCCqGSIb3DQMCAgFAMAcGBSsOAwIHMA0GCCqG
-SIb3DQMCAgEoMAoGCCqGSM49BAMCBEYwRAIgXumr+6lCu8BbiyKfuilRMYWQ3c/L
-L2YPM3XNEflTFsMCIBD2OZOswILb7Q5hmdsjqQxfrA/Tuf4Q2HpILw9EfqwR
+SIb3DQMCAgEoMAoGCCqGSM49BAMCBEYwRAIgczZD60fbFgdvIUN+iOcD/5aP7yYA
+qeOiOLmGlDH7JZQCIEMWN2Sd8L1lDdmz/bhjGI3AoznCH48liTcH/KS5sts4
 
-------B6A4203C06F9D8D9394D468D49DF936D--
+------D55C624E8685544D149216231BCBC9BC--
 
