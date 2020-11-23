@@ -2,7 +2,7 @@
 # OpenSSL example Certificate Authority configuration file.
 
 # Set the environment variable DDS_SECURE_DEMO_HOME to use this script
-HOME=$ENV::HOMEPATH\documents\rti_workspace\dds_secure_workbook\ca\identity
+HOME=$ENV::HOMEPATH\documents\rti_workspace\dds_secure_workbook\ca\permissions
 
 
 ####################################################################
