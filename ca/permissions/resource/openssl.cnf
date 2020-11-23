@@ -2,7 +2,7 @@
 # OpenSSL example Certificate Authority configuration file.
 
 # Set the environment variable DDS_SECURE_DEMO_HOME to use this script
-HOME=$ENV::HOMEPATH\documents\rti_workspace\dds_secure_workbook\ca\permissions
+HOME=$ENV::HOMEPATH\\documents\\rti_workspace\\dds_secure_workbook\\ca\\permissions
 
 
 ####################################################################
@@ -27,7 +27,7 @@ certificate = $dir/permissionscacert.pem   # The CA certificate
 crlnumber   = $dir/crlnumber    # the current crl number
                                 # must be commented out to leave a V1 CRL
 crl         = $dir/crl.pem      # The current CRL
-private_key = $dir/private/permissionscakey.pem    # The private key
+private_key = $dir\\private\\permissionscakey.pem    # The private key
 RANDFILE    = $dir/private/.rand        # Private random number file
 
 #x509_extensions    = usr_cert        # The extentions to add to the cert
