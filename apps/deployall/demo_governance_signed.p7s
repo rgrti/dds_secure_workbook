@@ -1,14 +1,14 @@
 MIME-Version: 1.0
-Content-Type: multipart/signed; protocol="application/x-pkcs7-signature"; micalg="sha-256"; boundary="----D55C624E8685544D149216231BCBC9BC"
+Content-Type: multipart/signed; protocol="application/x-pkcs7-signature"; micalg="sha-256"; boundary="----AC104DF67295D67443BAB5A231744B11"
 
 This is an S/MIME signed message
 
-------D55C624E8685544D149216231BCBC9BC
+------AC104DF67295D67443BAB5A231744B11
 Content-Type: text/plain
 
 <?xml version="1.0" encoding="UTF-8"?>
 <dds xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="/Applications/rti_connext_dds-5.3.1/resource/schema/dds_security_governance.xsd">
+    xsi:noNamespaceSchemaLocation="http://community.rti.com/schema/5.3.1/dds_security_governance.xsd">
     <domain_access_rules>
 
         <domain_rule>
@@ -116,6 +116,15 @@ Content-Type: text/plain
                     <enable_write_access_control>true</enable_write_access_control>
                     <metadata_protection_kind>NONE</metadata_protection_kind>
                     <data_protection_kind>NONE</data_protection_kind>
+                </topic_rule>
+                <topic_rule>
+                    <topic_expression>DDS:Security:LogTopic</topic_expression>
+                    <enable_discovery_protection>false</enable_discovery_protection>
+                    <enable_liveliness_protection>false</enable_liveliness_protection>
+                    <enable_read_access_control>true</enable_read_access_control>
+                    <enable_write_access_control>false</enable_write_access_control>
+                    <metadata_protection_kind>SIGN</metadata_protection_kind>
+                    <data_protection_kind>ENCRYPT</data_protection_kind>
                 </topic_rule>
                 <topic_rule>
                     <topic_expression>*</topic_expression>
@@ -311,12 +320,12 @@ Content-Type: text/plain
     </domain_access_rules>
 </dds>
 
-------D55C624E8685544D149216231BCBC9BC
+------AC104DF67295D67443BAB5A231744B11
 Content-Type: application/x-pkcs7-signature; name="smime.p7s"
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment; filename="smime.p7s"
 
-MIIESQYJKoZIhvcNAQcCoIIEOjCCBDYCAQExDzANBglghkgBZQMEAgEFADALBgkq
+MIIESwYJKoZIhvcNAQcCoIIEPDCCBDgCAQExDzANBglghkgBZQMEAgEFADALBgkq
 hkiG9w0BBwGgggIVMIICETCCAbYCFBBWYYm0p27La35Z5OL0H02xTFL9MAoGCCqG
 SM49BAMCMIGLMQswCQYDVQQGEwJVUzELMAkGA1UECAwCQ0ExEjAQBgNVBAcMCVN1
 bm55dmFsZTEeMBwGA1UECgwVUmVhbCBUaW1lIElubm92YXRpb25zMRcwFQYDVQQD
@@ -328,17 +337,17 @@ MCAGCSqGSIb3DQEJARYTcGVybWlzc2lvbnNAcnRpLmNvbTBWMBAGByqGSM49AgEG
 BSuBBAAKA0IABDKHu04yVzJI0DspZCIy6tUq7lpMTY3gr271bDQ3GpRnOfI5wpRe
 Ai9WzGmyrlZ/v1k9J65ZPVHriaHJspnGfSQwCgYIKoZIzj0EAwIDSQAwRgIhAOD+
 l9Ee9aqimQ9cSsndwoxmKWdKjWxMz0rlcx/LLgWMAiEAheA53ndWPbYsIKbM0a4r
-ISPvyTmOtIZzzr6FOWUxnPQxggH4MIIB9AIBATCBpDCBizELMAkGA1UEBhMCVVMx
+ISPvyTmOtIZzzr6FOWUxnPQxggH6MIIB9gIBATCBpDCBizELMAkGA1UEBhMCVVMx
 CzAJBgNVBAgMAkNBMRIwEAYDVQQHDAlTdW5ueXZhbGUxHjAcBgNVBAoMFVJlYWwg
 VGltZSBJbm5vdmF0aW9uczEXMBUGA1UEAwwOUlRJIENlcnQgV29ybGQxIjAgBgkq
 hkiG9w0BCQEWE3Blcm1pc3Npb25zQHJ0aS5jb20CFBBWYYm0p27La35Z5OL0H02x
 TFL9MA0GCWCGSAFlAwQCAQUAoIHkMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEw
-HAYJKoZIhvcNAQkFMQ8XDTIwMDgyODIyMTIyMlowLwYJKoZIhvcNAQkEMSIEIMDK
-HpahXTHwMEyXWQvgkAlylbwPhPd9n/muY98kWCx5MHkGCSqGSIb3DQEJDzFsMGow
+HAYJKoZIhvcNAQkFMQ8XDTIxMDUxMjE0MjMyNFowLwYJKoZIhvcNAQkEMSIEIOGQ
+7QkSzxokyncUXawUMM1rs01+rlB3erExilBZQXscMHkGCSqGSIb3DQEJDzFsMGow
 CwYJYIZIAWUDBAEqMAsGCWCGSAFlAwQBFjALBglghkgBZQMEAQIwCgYIKoZIhvcN
 AwcwDgYIKoZIhvcNAwICAgCAMA0GCCqGSIb3DQMCAgFAMAcGBSsOAwIHMA0GCCqG
-SIb3DQMCAgEoMAoGCCqGSM49BAMCBEYwRAIgczZD60fbFgdvIUN+iOcD/5aP7yYA
-qeOiOLmGlDH7JZQCIEMWN2Sd8L1lDdmz/bhjGI3AoznCH48liTcH/KS5sts4
+SIb3DQMCAgEoMAoGCCqGSM49BAMCBEgwRgIhAPcDIExk00z6TFklW0fnpiQsN7SF
+kBlwOxTcVHQjoMgfAiEAqBekmAUvytYV8THv398l5w75eRbTAw00qd7WHkpS+3A=
 
-------D55C624E8685544D149216231BCBC9BC--
+------AC104DF67295D67443BAB5A231744B11--
 

@@ -25,11 +25,13 @@
                 </domains>
                 <publish>
                     <topics>
+                        <topic>DDS:Security:LogTopic</topic>
                         <topic>*</topic>
                     </topics>
                 </publish>
                 <subscribe>
                     <topics>
+                        <topic>DDS:Security:LogTopic</topic>
                         <topic>*</topic>
                     </topics>
                 </subscribe>

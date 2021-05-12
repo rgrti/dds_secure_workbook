@@ -28,6 +28,7 @@
                     <topics>
                         <topic>Sq*</topic>
                         <topic>Cir*</topic>
+                        <topic>DDS:Security:LogTopic</topic>
                     </topics>
                 </publish>
                 <subscribe>

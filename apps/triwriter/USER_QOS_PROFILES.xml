@@ -78,25 +78,19 @@
                         </element>
 
                         <!-- This section configures DDS Secure -->
-                        <!-- TODO: You can increase the logging level below for troubleshooting -->
-                        <!-- TODO: For full visibility, set the level to 7 (debug) -->
-                        <element>
-                            <name>com.rti.serv.secure.logging.log_level</name>
-                            <value>3</value>
-                        </element>
-                        <!-- TODO: Set the location for the security logging file -->
-                        <element>
-                            <name>com.rti.serv.secure.logging.log_file</name>
-                            <value>$(HOMEPATH)\documents\rti_workspace\dds_secure_workbook\apps\triwriter\deploy\triwriter_secure_log.txt</value>
-                        </element>
-                        <!-- TODO: If you'd like to receive Security log messages at a remote location -->
-                        <!-- TODO: set the property below to true.  The log messages will then be published -->
-                        <!-- TODO: to DDS topics and can be viewed in tools lik Admin Console -->
 
-                        <!-- TODO: Add entries for other Secure logging settings -->
+                        <!-- TODO: If you'd like to receive Security log messages at a remote location -->
+                        <!-- TODO: set the property below to include SECURITY_TOPIC. The log messages will then -->
+                        <!-- TODO: be sent to Secure logging DDS topics and can be viewed in tools like Admin Console -->
                         <element>
-                            <name>com.rti.serv.secure.logging.distribute.enable</name>
-                            <value>true</value>
+                            <name>com.rti.serv.secure.logging.mode_mask</name>
+                            <value>BUILTIN | SECURITY_TOPIC</value>
+                        </element>
+
+                        <!-- TODO: Specify the verbosity of the log messages -->
+                        <element>
+                            <name>com.rti.serv.secure.logging.verbosity</name>
+                            <value>NOTICE</value>
                         </element>
 
                         <!-- TODO: The properties below set the paths to the configuration files reuired -->
