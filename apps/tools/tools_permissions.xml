@@ -7,7 +7,6 @@
 
         <grant name="toolsPermissions">
 
-            <!-- TODO: Change the fields below to match those in your appname.cnf file.  Change 'demo_app' to your app's name -->
             <subject_name>/C=US/ST=CA/O=Real Time Innovations/CN=tools/emailAddress=tools@rti.com</subject_name>
 
             <validity>

@@ -7,7 +7,6 @@
 
         <grant name="triwriterPermissions">
 
-            <!-- TODO: Change the fields below to match those in your appname.cnf file.  Change 'demo_app' to your app's name -->
             <subject_name>/C=US/ST=CA/O=Real Time Innovations/CN=triwriter/emailAddress=triwriter@rti.com</subject_name>
 
             <validity>
@@ -16,7 +15,6 @@
                 <not_after>2033-06-01T13:00:00</not_after>
             </validity>
 
-            <!-- Domains 0-49 carries no read or write restrictions on any topics -->
             <allow_rule>
                 <domains>
                     <id_range>
