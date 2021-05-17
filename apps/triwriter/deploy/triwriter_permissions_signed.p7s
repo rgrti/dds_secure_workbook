@@ -1,56 +1,62 @@
 MIME-Version: 1.0
-Content-Type: multipart/signed; protocol="application/x-pkcs7-signature"; micalg="sha-256"; boundary="----BE18C68ACDEEB41E6C5CF4756826BA10"
+Content-Type: multipart/signed; protocol="application/x-pkcs7-signature"; micalg="sha-256"; boundary="----A72532775934910E92DA2E6CF1507D30"
 
 This is an S/MIME signed message
 
-------BE18C68ACDEEB41E6C5CF4756826BA10
-Content-Type: text/plain
+------A72532775934910E92DA2E6CF1507D30
+Content-Type: text/plain
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<dds xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="http://community.rti.com/schema/6.1.0/dds_security_permissions.xsd">
+
+    <permissions>
+
+        <grant name="triwriterPermissions">
+
+            <!-- TODO: Change the fields below to match those in your appname.cnf file.  Change 'demo_app' to your app's name -->
+            <subject_name>/C=US/ST=CA/O=Real Time Innovations/CN=triwriter/emailAddress=triwriter@rti.com</subject_name>
+
+            <validity>
+                <!-- Format is CCYY-MM-DDThh:mm:ss[Z|(+|-)hh:mm] in GMT -->
+                <not_before>2013-06-01T13:00:00</not_before>
+                <not_after>2033-06-01T13:00:00</not_after>
+            </validity>
+
+            <!-- Domains 0-49 carries no read or write restrictions on any topics -->
+            <allow_rule>
+                <domains>
+                    <id_range>
+                        <min>0</min>
+                        <max>6</max>
+                    </id_range>
+                </domains>
+                <publish>
+                    <partitions>
+                        <partition>*</partition>
+                    </partitions>
+                    <topics>
+                        <topic>*</topic>
+                    </topics>
+                </publish>
+                <subscribe>
+                    <partitions>
+                        <partition>*</partition>
+                    </partitions>
+                    <topics>
+                        <topic>*</topic>
+                    </topics>
+                </subscribe>
+            </allow_rule>
+
+            <default>DENY</default>
+
+        </grant>
+    </permissions>
+</dds>
 
-<?xml version="1.0" encoding="UTF-8"?>
-
-<dds xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="/Applications/rti_connext_dds-5.3.1/resource/schema/dds_security_permissions.xsd">
-
-    <permissions>
-
-        <grant name="triwriterPermissions">
-
-            <!-- TODO: Change the fields below to match those in your appname.cnf file.  Change 'demo_app' to your app's name -->
-            <subject_name>/C=US/ST=CA/O=Real Time Innovations/CN=triwriter/emailAddress=triwriter@rti.com</subject_name>
-
-            <validity>
-                <!-- Format is CCYY-MM-DDThh:mm:ss[Z|(+|-)hh:mm] in GMT -->
-                <not_before>2013-06-01T13:00:00</not_before>
-                <not_after>2033-06-01T13:00:00</not_after>
-            </validity>
-
-            <!-- Domains 0-49 carries no read or write restrictions on any topics -->
-            <allow_rule>
-                <domains>
-                    <id_range>
-                        <min>0</min>
-                        <max>6</max>
-                    </id_range>
-                </domains>
-                <publish>
-                    <topics>
-                        <topic>*</topic>
-                    </topics>
-                </publish>
-                <subscribe>
-                    <topics>
-                        <topic>*</topic>
-                    </topics>
-                </subscribe>
-            </allow_rule>
-
-            <default>DENY</default>
-
-        </grant>
-    </permissions>
-</dds>
-
-------BE18C68ACDEEB41E6C5CF4756826BA10
+------A72532775934910E92DA2E6CF1507D30
 Content-Type: application/x-pkcs7-signature; name="smime.p7s"
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment; filename="smime.p7s"
@@ -72,12 +78,12 @@ CzAJBgNVBAgMAkNBMRIwEAYDVQQHDAlTdW5ueXZhbGUxHjAcBgNVBAoMFVJlYWwg
 VGltZSBJbm5vdmF0aW9uczEXMBUGA1UEAwwOUlRJIENlcnQgV29ybGQxIjAgBgkq
 hkiG9w0BCQEWE3Blcm1pc3Npb25zQHJ0aS5jb20CFBBWYYm0p27La35Z5OL0H02x
 TFL9MA0GCWCGSAFlAwQCAQUAoIHkMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEw
-HAYJKoZIhvcNAQkFMQ8XDTIwMDcyMjIwMDkzMVowLwYJKoZIhvcNAQkEMSIEIKT8
-Ucs+lIGPqzcSLaLlztJJXxy0hOK6KCqbOV/16SFRMHkGCSqGSIb3DQEJDzFsMGow
+HAYJKoZIhvcNAQkFMQ8XDTIxMDUxNzIwMjY0NlowLwYJKoZIhvcNAQkEMSIEIKKP
+Yq0FH4UNML2zn0RnSe/tTYQvJkmApyEiK8v/NzeHMHkGCSqGSIb3DQEJDzFsMGow
 CwYJYIZIAWUDBAEqMAsGCWCGSAFlAwQBFjALBglghkgBZQMEAQIwCgYIKoZIhvcN
 AwcwDgYIKoZIhvcNAwICAgCAMA0GCCqGSIb3DQMCAgFAMAcGBSsOAwIHMA0GCCqG
-SIb3DQMCAgEoMAoGCCqGSM49BAMCBEcwRQIhAJj5qNokA3mH33CPkilYWGBv4QAC
-BWv+NulLu49FXsd8AiBxrQDYDFdTMnFDazxDHe2OaJUzd5nWA+glT6Xr/CZpSQ==
+SIb3DQMCAgEoMAoGCCqGSM49BAMCBEcwRQIhANYXOMsCMWEeBj31wgT1c55r4/j/
+imr0BOU6z2b1TDFWAiAsIahaP4sweQAzdQ6szMm7FzetcHH4YdqnyPjBU6Mdyw==
 
-------BE18C68ACDEEB41E6C5CF4756826BA10--
+------A72532775934910E92DA2E6CF1507D30--
 
