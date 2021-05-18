@@ -24,11 +24,17 @@
                     </id_range>
                 </domains>
                 <publish>
+                    <partitions>
+                        <partition>*</partition>
+                    </partitions>
                     <topics>
                         <topic>*</topic>
                     </topics>
                 </publish>
                 <subscribe>
+                    <partitions>
+                        <partition>*</partition>
+                    </partitions>
                     <topics>
                         <topic>*</topic>
                     </topics>
@@ -44,6 +50,9 @@
                 </domains>
 
                 <publish>
+                    <partitions>
+                        <partition>*</partition>
+                    </partitions>
                     <topics>
                         <topic>secure_topic_this_app_can_NOT_write</topic>
                         <topic>secure_topic_this_app_can_NOT_write</topic>
@@ -51,6 +60,9 @@
                 </publish>
 
                 <subscribe>
+                    <partitions>
+                        <partition>*</partition>
+                    </partitions>
                     <topics>
                         <topic>secure_topic_this_app_can_NOT_read</topic>
                         <topic>secure_topic_this_app_can_NOT_read</topic>
