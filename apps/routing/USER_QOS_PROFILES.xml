@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+<dds xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+     xsi:noNamespaceSchemaLocation="http://community.rti.com/schema/6.1.0/rti_routing_service.xsd">
+
+    <qos_library name="SecureRouting">
+        <participant_qos name="SecureSide" base_name="BuiltinQosLib::Generic.Security">
+            <property>
+                <value>
+                        <element>
+                            <name>com.rti.serv.secure.logging.mode_mask</name>
+                            <value>BUILTIN | SECURITY_TOPIC</value>
+                        </element>
+                        <element>
+                            <name>com.rti.serv.secure.logging.verbosity</name>
+                            <value>NOTICE</value>
+                        </element>
+                        <element>
+                            <name>com.rti.serv.secure.authentication.ca_file</name>
+                            <value>$(HOMEPATH)\documents\rti_workspace\dds_secure_workbook\apps\deployall\cacert.pem</value>
+                        </element>
+                        <element>
+                            <name>com.rti.serv.secure.access_control.permissions_authority_file</name>
+                            <value>$(HOMEPATH)\documents\rti_workspace\dds_secure_workbook\apps\deployall\permissionscacert.pem</value>
+                        </element>
+                        <element>
+                            <name>com.rti.serv.secure.access_control.governance_file</name>
+                            <value>$(HOMEPATH)\documents\rti_workspace\dds_secure_workbook\apps\deployall\demo_governance_signed.p7s</value>
+                        </element>
+                        <element>
+                            <name>com.rti.serv.secure.authentication.certificate_file</name>
+                            <value>$(HOMEPATH)\documents\rti_workspace\dds_secure_workbook\apps\routing\deploy\routing.pem</value>
+                        </element>
+                        <element>
+                            <name>com.rti.serv.secure.authentication.private_key_file</name>
+                            <value>$(HOMEPATH)\documents\rti_workspace\dds_secure_workbook\apps\routing\deploy\private\routingkey.pem</value>
+                        </element>
+                        <element>
+                            <name>com.rti.serv.secure.access_control.permissions_file</name>
+                            <value>$(HOMEPATH)\documents\rti_workspace\dds_secure_workbook\apps\routing\deploy\routing_permissions_signed.p7s</value>
+                        </element>
+                </value>
+            </property>
+        </participant_qos>
+    </qos_library>
+
+    <routing_service name="example">
+        <annotation><documentation>Routing Service Example</documentation></annotation>
+        <administration><domain_id>1</domain_id></administration>
+
+        <domain_route name="Route" enabled="true">
+            <!-- Participant 0 is the non-secure domain (domain 0) -->
+            <participant name="participant0">
+                <domain_id>0</domain_id>
+            </participant>
+
+            <!-- Participant 6 is the secured domain (domain 6) -->
+            <participant name="participant6">
+                <domain_id>6</domain_id>
+                <participant_qos base_name="SecureRouting::SecureSide"></participant_qos>
+            </participant>
+
+            <session name="Session" enabled="true">
+    <!-- Two topic routes are auto-enabled, to pass squares from the non-secure to secure domain, 
+         and circles from the secure to non-Secure domain -->
+                <auto_topic_route name="Square" enabled="true">
+                    <input participant="participant0">
+                        <allow_topic_name_filter>Square</allow_topic_name_filter>
+                        <allow_registered_type_name_filter>ShapeType</allow_registered_type_name_filter>
+                    </input>
+                    <output participant="participant6">
+                        <allow_topic_name_filter>Square</allow_topic_name_filter>
+                        <allow_registered_type_name_filter>ShapeType</allow_registered_type_name_filter>
+                    </output>
+                </auto_topic_route>
+
+                <auto_topic_route name="Circle" enabled="true">
+                    <filter_propagation>
+                        <enabled>true</enabled>
+                        <max_event_delay><sec>1</sec><nanosec>0</nanosec></max_event_delay>
+                    </filter_propagation>
+                    <input participant="participant6">
+                        <allow_topic_name_filter>Circle</allow_topic_name_filter>
+                        <allow_registered_type_name_filter>ShapeType</allow_registered_type_name_filter>
+                    </input>
+                    <output participant="participant0">
+                        <allow_topic_name_filter>Circle</allow_topic_name_filter>
+                        <allow_registered_type_name_filter>ShapeType</allow_registered_type_name_filter>
+                    </output>
+                </auto_topic_route>
+
+                <!-- Routes for each shape that include a filter on the x value. Values < 150 are not filtered -->
+                <auto_topic_route name="SquareFilter" enabled="false">
+                    <publish_with_original_info>true</publish_with_original_info> 
+                    <input participant="participant0">
+                        <allow_topic_name_filter>Square</allow_topic_name_filter>
+                        <allow_registered_type_name_filter>ShapeType</allow_registered_type_name_filter>
+                        <content_filter>
+                            <expression>x &lt; %0</expression>
+                            <parameter>150</parameter>
+                        </content_filter>
+                    </input>
+                    <output participant="participant6">
+                        <allow_topic_name_filter>Square</allow_topic_name_filter>
+                        <allow_registered_type_name_filter>ShapeType</allow_registered_type_name_filter>
+                    </output>
+                </auto_topic_route>
+
+                <auto_topic_route name="CircleFilter" enabled="false">
+                    <publish_with_original_info>true</publish_with_original_info> 
+                    <input participant="participant6">
+                        <allow_topic_name_filter>Circle</allow_topic_name_filter>
+                        <allow_registered_type_name_filter>ShapeType</allow_registered_type_name_filter>
+                        <content_filter>
+                            <expression>x &lt; %0</expression>
+                            <parameter>150</parameter>
+                        </content_filter>
+                    </input>
+                    <output participant="participant0">
+                        <allow_topic_name_filter>Circle</allow_topic_name_filter>
+                        <allow_registered_type_name_filter>ShapeType</allow_registered_type_name_filter>
+                    </output>
+                </auto_topic_route>
+            </session>
+        </domain_route>
+    </routing_service>
+</dds>
