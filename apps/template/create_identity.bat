@@ -12,13 +12,13 @@ ECHO using application name: %appname%
 ECHO.
 
 ECHO generating the application's private key and saving it to deploy\private\%appname%key.pem
-ECHO      openssl ecparam -name secp384r1 -genkey -noout -out deploy\private\%appname%key.pem
-openssl ecparam -name secp384r1 -genkey -noout -out deploy\private\%appname%key.pem
+ECHO      openssl ecparam -name secp256r1 -genkey -noout -out deploy\private\%appname%key.pem
+openssl ecparam -name secp256r1 -genkey -noout -out deploy\private\%appname%key.pem
 ECHO.
 
 ECHO generating the certificate signing request and saving it to %appname%.csr
-ECHO      openssl req -new -sha384 -key deploy\private\%appname%key.pem -out %appname%.csr -config %appname%.cnf
-openssl req -new -sha384 -key deploy\private\%appname%key.pem -out %appname%.csr -config %appname%.cnf
+ECHO      openssl req -new -sha256 -key deploy\private\%appname%key.pem -out %appname%.csr -config %appname%.cnf
+openssl req -new -sha256 -key deploy\private\%appname%key.pem -out %appname%.csr -config %appname%.cnf
 ECHO.
 
 ECHO using the identity CA to generate the applications certificate from %appname%.csr and save to %appname%.pem
