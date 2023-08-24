@@ -1,15 +1,15 @@
 MIME-Version: 1.0
-Content-Type: multipart/signed; protocol="application/x-pkcs7-signature"; micalg="sha-256"; boundary="----53F975C7EE41A0186BB6E1B2AF5BB3C6"
+Content-Type: multipart/signed; protocol="application/x-pkcs7-signature"; micalg="sha-256"; boundary="----A520A6975E0BBDDA9064ADD7AD549B42"
 
 This is an S/MIME signed message
 
-------53F975C7EE41A0186BB6E1B2AF5BB3C6
+------A520A6975E0BBDDA9064ADD7AD549B42
 Content-Type: text/plain
 
 <?xml version="1.0" encoding="UTF-8"?>
 
 <dds xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="http://community.rti.com/schema/6.1.0/dds_security_permissions.xsd">
+    xsi:noNamespaceSchemaLocation="http://community.rti.com/schema/7.2.0/dds_security_permissions.xsd">
 
     <permissions>
 
@@ -27,7 +27,7 @@ Content-Type: text/plain
                 <domains>
                     <id_range>
                         <min>0</min>
-                        <max>6</max>
+                        <max>9</max>
                     </id_range>
                 </domains>
                 <publish>
@@ -54,7 +54,7 @@ Content-Type: text/plain
     </permissions>
 </dds>
 
-------53F975C7EE41A0186BB6E1B2AF5BB3C6
+------A520A6975E0BBDDA9064ADD7AD549B42
 Content-Type: application/x-pkcs7-signature; name="smime.p7s"
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment; filename="smime.p7s"
@@ -76,12 +76,12 @@ UzELMAkGA1UECAwCQ0ExEjAQBgNVBAcMCVN1bm55dmFsZTEeMBwGA1UECgwVUmVh
 bCBUaW1lIElubm92YXRpb25zMRcwFQYDVQQDDA5SVEkgQ2VydCBXb3JsZDEiMCAG
 CSqGSIb3DQEJARYTcGVybWlzc2lvbnNAcnRpLmNvbQIUIypMepHMX5MLAFmZPQ2c
 r2xaqHEwDQYJYIZIAWUDBAIBBQCggeQwGAYJKoZIhvcNAQkDMQsGCSqGSIb3DQEH
-ATAcBgkqhkiG9w0BCQUxDxcNMjMwODI0MTcxMDIyWjAvBgkqhkiG9w0BCQQxIgQg
-7eVNscHLgv5SvUPFtR1GLB84d44jfUz+oqTdbd6CU1YweQYJKoZIhvcNAQkPMWww
+ATAcBgkqhkiG9w0BCQUxDxcNMjMwODI0MjAxNDQzWjAvBgkqhkiG9w0BCQQxIgQg
+cn7rT9VcIa0f9zmk6R7aaeOVZT+W8W3ZmHM4t61gc2kweQYJKoZIhvcNAQkPMWww
 ajALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsGCWCGSAFlAwQBAjAKBggqhkiG
 9w0DBzAOBggqhkiG9w0DAgICAIAwDQYIKoZIhvcNAwICAUAwBwYFKw4DAgcwDQYI
-KoZIhvcNAwICASgwCgYIKoZIzj0EAwIERzBFAiEAx0oKDRjD8amN2KDDeCJZKfib
-bE86N4szxSW7ej+R890CICceSJzUeX8uKjEpYDNS5LF/jpI9qKbV5LbmkOYEE3qX
+KoZIhvcNAwICASgwCgYIKoZIzj0EAwIERzBFAiEA1+pNiBWPeFl8KE25I/6MguOW
+GcGBuFdNRiyyY/bQ5OgCIAYjnVgjYHmg3Lp89UWWD5Po/0D7N463nX0FfhKvN0HG
 
-------53F975C7EE41A0186BB6E1B2AF5BB3C6--
+------A520A6975E0BBDDA9064ADD7AD549B42--
 
