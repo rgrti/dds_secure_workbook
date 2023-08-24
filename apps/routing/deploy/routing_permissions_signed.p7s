@@ -1,15 +1,15 @@
 MIME-Version: 1.0
-Content-Type: multipart/signed; protocol="application/x-pkcs7-signature"; micalg="sha-256"; boundary="----543E2E886DD20D611BBF060723850776"
+Content-Type: multipart/signed; protocol="application/x-pkcs7-signature"; micalg="sha-256"; boundary="----0BA5A6DE878E476744ADF816A89EB8C9"
 
 This is an S/MIME signed message
 
-------543E2E886DD20D611BBF060723850776
+------0BA5A6DE878E476744ADF816A89EB8C9
 Content-Type: text/plain
 
 <?xml version="1.0" encoding="UTF-8"?>
 
 <dds xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="http://community.rti.com/schema/6.1.0/dds_security_permissions.xsd">
+    xsi:noNamespaceSchemaLocation="http://community.rti.com/schema/7.2.0/dds_security_permissions.xsd">
 
     <permissions>
 
@@ -53,7 +53,7 @@ Content-Type: text/plain
                 <domains>
                     <id_range>
                         <min>0</min>
-                        <max>6</max>
+                        <max>9</max>
                     </id_range>
                 </domains>
 
@@ -63,7 +63,6 @@ Content-Type: text/plain
                     </partitions>
                     <topics>
                         <topic>secure_topic_this_app_can_NOT_write</topic>
-                        <topic>secure_topic_this_app_can_NOT_write</topic>
                     </topics>
                 </publish>
 
@@ -72,7 +71,6 @@ Content-Type: text/plain
                         <partition>*</partition>
                     </partitions>
                     <topics>
-                        <topic>secure_topic_this_app_can_NOT_read</topic>
                         <topic>secure_topic_this_app_can_NOT_read</topic>
                     </topics>
                 </subscribe>
@@ -85,12 +83,12 @@ Content-Type: text/plain
     </permissions>
 </dds>
 
-------543E2E886DD20D611BBF060723850776
+------0BA5A6DE878E476744ADF816A89EB8C9
 Content-Type: application/x-pkcs7-signature; name="smime.p7s"
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment; filename="smime.p7s"
 
-MIIESwYJKoZIhvcNAQcCoIIEPDCCBDgCAQExDzANBglghkgBZQMEAgEFADALBgkq
+MIIETQYJKoZIhvcNAQcCoIIEPjCCBDoCAQExDzANBglghkgBZQMEAgEFADALBgkq
 hkiG9w0BBwGgggIXMIICEzCCAbkCFCMqTHqRzF+TCwBZmT0NnK9sWqhxMAoGCCqG
 SM49BAMCMIGLMQswCQYDVQQGEwJVUzELMAkGA1UECAwCQ0ExEjAQBgNVBAcMCVN1
 bm55dmFsZTEeMBwGA1UECgwVUmVhbCBUaW1lIElubm92YXRpb25zMRcwFQYDVQQD
@@ -102,17 +100,18 @@ MCAGCSqGSIb3DQEJARYTcGVybWlzc2lvbnNAcnRpLmNvbTBZMBMGByqGSM49AgEG
 CCqGSM49AwEHA0IABASebadUL47AcpldF9Z2pkRUk0kvUsK3h8HZOnR1mlZrxnBD
 c6jJ7lKVuKOMiw8O6m3feZKKfud7Rh4r4cPbScIwCgYIKoZIzj0EAwIDSAAwRQIg
 AXWCHZk+36+eyrhmoyg5VaXDY92x0bpEN0eHVLeGp5sCIQDsbWM6vBTmDERiq+bR
-N2DTkKmNRnHJ4rq4zkltVVuTOzGCAfgwggH0AgEBMIGkMIGLMQswCQYDVQQGEwJV
+N2DTkKmNRnHJ4rq4zkltVVuTOzGCAfowggH2AgEBMIGkMIGLMQswCQYDVQQGEwJV
 UzELMAkGA1UECAwCQ0ExEjAQBgNVBAcMCVN1bm55dmFsZTEeMBwGA1UECgwVUmVh
 bCBUaW1lIElubm92YXRpb25zMRcwFQYDVQQDDA5SVEkgQ2VydCBXb3JsZDEiMCAG
 CSqGSIb3DQEJARYTcGVybWlzc2lvbnNAcnRpLmNvbQIUIypMepHMX5MLAFmZPQ2c
 r2xaqHEwDQYJYIZIAWUDBAIBBQCggeQwGAYJKoZIhvcNAQkDMQsGCSqGSIb3DQEH
-ATAcBgkqhkiG9w0BCQUxDxcNMjMwODI0MTcxMTM3WjAvBgkqhkiG9w0BCQQxIgQg
-+k/TmAdcGKcF8dpDRwBZ2nuK1J8i00/oDxFGB7JaUMQweQYJKoZIhvcNAQkPMWww
+ATAcBgkqhkiG9w0BCQUxDxcNMjMwODI0MjAxMjAxWjAvBgkqhkiG9w0BCQQxIgQg
+IFC6LVGXGlmi4GdJFzLS3EDfwjx8undCppxLqtIl9JwweQYJKoZIhvcNAQkPMWww
 ajALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsGCWCGSAFlAwQBAjAKBggqhkiG
 9w0DBzAOBggqhkiG9w0DAgICAIAwDQYIKoZIhvcNAwICAUAwBwYFKw4DAgcwDQYI
-KoZIhvcNAwICASgwCgYIKoZIzj0EAwIERjBEAiAkz7lNUUQ7tOzO2H4m+HudspSr
-Vd/b5rXu8R5X/pH36AIgMjhyvvqmOsUVSOhH+qOpsXZtwTHaWX3aVJE4poau3DE=
+KoZIhvcNAwICASgwCgYIKoZIzj0EAwIESDBGAiEA++p9E85M4mzHMS/3jSjmjG8L
+lNhST59jeIh+NDgEu+ECIQD03xztUWAOmtMmDXESG4kkhOlbUHbbkRF+wg+rIdqg
+VQ==
 
-------543E2E886DD20D611BBF060723850776--
+------0BA5A6DE878E476744ADF816A89EB8C9--
 

@@ -1,14 +1,14 @@
 MIME-Version: 1.0
-Content-Type: multipart/signed; protocol="application/x-pkcs7-signature"; micalg="sha-256"; boundary="----EAB3C6FAF88CE192BEDB4FE03BC38A98"
+Content-Type: multipart/signed; protocol="application/x-pkcs7-signature"; micalg="sha-256"; boundary="----09E55BF7E248D85FCF0A6D5AA5164286"
 
 This is an S/MIME signed message
 
-------EAB3C6FAF88CE192BEDB4FE03BC38A98
+------09E55BF7E248D85FCF0A6D5AA5164286
 Content-Type: text/plain
 
 <?xml version="1.0" encoding="UTF-8"?>
 <dds xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="http://community.rti.com/schema/5.3.1/dds_security_governance.xsd">
+    xsi:noNamespaceSchemaLocation="http://community.rti.com/schema/7.2.0/dds_security_governance.xsd">
     <domain_access_rules>
 
         <domain_rule>
@@ -308,15 +308,61 @@ Content-Type: text/plain
             </topic_access_rules>
         </domain_rule>
 
+        <domain_rule> <!-- Enable PSK protection for pre-handshake messages -->
+            <domains> <!-- All RTPS packets will be protected, however this will also break interoperability -->
+                <id>7</id>
+            </domains>
+            <rtps_preshared_secret_protection_kind>ENCRYPT</rtps_preshared_secret_protection_kind><!-- NEW: Encrypt pre-handshake messages (data(p)s, permission docs, etc) -->
+            <allow_unauthenticated_participants>false</allow_unauthenticated_participants>
+            <enable_join_access_control>true</enable_join_access_control>
+            <discovery_protection_kind>ENCRYPT</discovery_protection_kind> 
+            <liveliness_protection_kind>NONE</liveliness_protection_kind>
+            <rtps_protection_kind>ENCRYPT</rtps_protection_kind>
+            <topic_access_rules>
+                <topic_rule>
+                    <topic_expression>Square</topic_expression>
+                    <enable_discovery_protection>false</enable_discovery_protection>
+                    <enable_read_access_control>true</enable_read_access_control>
+                    <enable_write_access_control>false</enable_write_access_control>
+                    <metadata_protection_kind>NONE</metadata_protection_kind>
+                    <data_protection_kind>NONE</data_protection_kind>
+                </topic_rule>
+                <topic_rule>
+                    <topic_expression>Circle</topic_expression>
+                    <enable_discovery_protection>false</enable_discovery_protection>
+                    <enable_read_access_control>false</enable_read_access_control>
+                    <enable_write_access_control>true</enable_write_access_control>
+                    <metadata_protection_kind>NONE</metadata_protection_kind>
+                    <data_protection_kind>NONE</data_protection_kind>
+                </topic_rule>
+                <topic_rule>
+                    <topic_expression>Triangle</topic_expression>
+                    <enable_discovery_protection>false</enable_discovery_protection>
+                    <enable_read_access_control>true</enable_read_access_control>
+                    <enable_write_access_control>true</enable_write_access_control>
+                    <metadata_protection_kind>NONE</metadata_protection_kind>
+                    <data_protection_kind>NONE</data_protection_kind>
+                </topic_rule>
+                <topic_rule>
+                    <topic_expression>*</topic_expression>
+                    <enable_discovery_protection>false</enable_discovery_protection>
+                    <enable_read_access_control>false</enable_read_access_control>
+                    <enable_write_access_control>false</enable_write_access_control>
+                    <metadata_protection_kind>NONE</metadata_protection_kind>
+                    <data_protection_kind>NONE</data_protection_kind>
+                </topic_rule>
+            </topic_access_rules>
+        </domain_rule>
+
     </domain_access_rules>
 </dds>
 
-------EAB3C6FAF88CE192BEDB4FE03BC38A98
+------09E55BF7E248D85FCF0A6D5AA5164286
 Content-Type: application/x-pkcs7-signature; name="smime.p7s"
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment; filename="smime.p7s"
 
-MIIETAYJKoZIhvcNAQcCoIIEPTCCBDkCAQExDzANBglghkgBZQMEAgEFADALBgkq
+MIIESwYJKoZIhvcNAQcCoIIEPDCCBDgCAQExDzANBglghkgBZQMEAgEFADALBgkq
 hkiG9w0BBwGgggIXMIICEzCCAbkCFCMqTHqRzF+TCwBZmT0NnK9sWqhxMAoGCCqG
 SM49BAMCMIGLMQswCQYDVQQGEwJVUzELMAkGA1UECAwCQ0ExEjAQBgNVBAcMCVN1
 bm55dmFsZTEeMBwGA1UECgwVUmVhbCBUaW1lIElubm92YXRpb25zMRcwFQYDVQQD
@@ -328,17 +374,17 @@ MCAGCSqGSIb3DQEJARYTcGVybWlzc2lvbnNAcnRpLmNvbTBZMBMGByqGSM49AgEG
 CCqGSM49AwEHA0IABASebadUL47AcpldF9Z2pkRUk0kvUsK3h8HZOnR1mlZrxnBD
 c6jJ7lKVuKOMiw8O6m3feZKKfud7Rh4r4cPbScIwCgYIKoZIzj0EAwIDSAAwRQIg
 AXWCHZk+36+eyrhmoyg5VaXDY92x0bpEN0eHVLeGp5sCIQDsbWM6vBTmDERiq+bR
-N2DTkKmNRnHJ4rq4zkltVVuTOzGCAfkwggH1AgEBMIGkMIGLMQswCQYDVQQGEwJV
+N2DTkKmNRnHJ4rq4zkltVVuTOzGCAfgwggH0AgEBMIGkMIGLMQswCQYDVQQGEwJV
 UzELMAkGA1UECAwCQ0ExEjAQBgNVBAcMCVN1bm55dmFsZTEeMBwGA1UECgwVUmVh
 bCBUaW1lIElubm92YXRpb25zMRcwFQYDVQQDDA5SVEkgQ2VydCBXb3JsZDEiMCAG
 CSqGSIb3DQEJARYTcGVybWlzc2lvbnNAcnRpLmNvbQIUIypMepHMX5MLAFmZPQ2c
 r2xaqHEwDQYJYIZIAWUDBAIBBQCggeQwGAYJKoZIhvcNAQkDMQsGCSqGSIb3DQEH
-ATAcBgkqhkiG9w0BCQUxDxcNMjMwODI0MTcwOTMzWjAvBgkqhkiG9w0BCQQxIgQg
-OUuEGR/+n9/KBxm8ym853ihXA5CWHeQlV1ziU//sif8weQYJKoZIhvcNAQkPMWww
+ATAcBgkqhkiG9w0BCQUxDxcNMjMwODI0MjAxMDQ2WjAvBgkqhkiG9w0BCQQxIgQg
+UhkOHzNhp2gG3q0b7MpT3+mS0qVcGd5lFeg1S+nmQfMweQYJKoZIhvcNAQkPMWww
 ajALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsGCWCGSAFlAwQBAjAKBggqhkiG
 9w0DBzAOBggqhkiG9w0DAgICAIAwDQYIKoZIhvcNAwICAUAwBwYFKw4DAgcwDQYI
-KoZIhvcNAwICASgwCgYIKoZIzj0EAwIERzBFAiEA1CX/4HDVl5zJxXOdGUtAaUjt
-u/NYR1TG9MAqAuSFl7ICIB8yTpbXQtvlgIlTeUUyjicjFqDvxokHyAKWRJw+QsVU
+KoZIhvcNAwICASgwCgYIKoZIzj0EAwIERjBEAiAvE+Ax6iMtKkh7RITVtvIV5NP2
+8oSxBb3d1wiyvoFfEAIgAIh4I8eT+Uj3b+ciu4LlF7iUTtoJzTb0DxIBgEecZ54=
 
-------EAB3C6FAF88CE192BEDB4FE03BC38A98--
+------09E55BF7E248D85FCF0A6D5AA5164286--
 
