@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <dds xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="http://community.rti.com/schema/5.3.1/dds_security_permissions.xsd">
+    xsi:noNamespaceSchemaLocation="http://community.rti.com/schema/7.2.0/dds_security_permissions.xsd">
 
     <permissions>
 
@@ -20,7 +20,7 @@
                 <domains>
                     <id_range>
                         <min>0</min>
-                        <max>6</max>
+                        <max>9</max>
                     </id_range>
                 </domains>
                 <publish>
@@ -45,7 +45,7 @@
                 <domains>
                     <id_range>
                         <min>0</min>
-                        <max>6</max>
+                        <max>9</max>
                     </id_range>
                 </domains>
 
@@ -55,7 +55,6 @@
                     </partitions>
                     <topics>
                         <topic>secure_topic_this_app_can_NOT_write</topic>
-                        <topic>secure_topic_this_app_can_NOT_write</topic>
                     </topics>
                 </publish>
 
@@ -64,7 +63,6 @@
                         <partition>*</partition>
                     </partitions>
                     <topics>
-                        <topic>secure_topic_this_app_can_NOT_read</topic>
                         <topic>secure_topic_this_app_can_NOT_read</topic>
                     </topics>
                 </subscribe>
