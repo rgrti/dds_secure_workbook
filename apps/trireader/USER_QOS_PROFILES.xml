@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <dds xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
      xsi:noNamespaceSchemaLocation="http://community.rti.com/schema/7.3.0/rti_dds_qos_profiles.xsd"
-     version="7.2.0">
+     version="7.3.0">
 
      <!-- TODO: Do a global search and replace on "demo_app".  Replace this with -->
      <!-- TODO: the name of your application (i.e. "shapes"). -->
